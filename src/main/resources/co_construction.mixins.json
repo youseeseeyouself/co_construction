@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.ricemo.co_construction.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "co_construction.refmap.json",
   "mixins": [
   ],

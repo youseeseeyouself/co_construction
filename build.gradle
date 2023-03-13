@@ -1,37 +1,37 @@
 buildscript {
     repositories {
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
         mavenCentral()
     }
     dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
     }
 }
 
 plugins {
-    id 'net.minecraftforge.gradle' version '5.1.+'
+    id "net.minecraftforge.gradle" version "5.1.+"
 }
 
-apply plugin: 'org.spongepowered.mixin'
+apply plugin: "org.spongepowered.mixin"
 
-group = 'com.ricemo'
-version = '1.0-SNAPSHOT'
+group = "com.ricemo"
+version = "${mod_version}"
+archivesBaseName = "${mod_id}"
 
 java {
-    archivesBaseName = 'co_construction'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
 minecraft {
 
-    mappings channel: 'official', version: '1.19.2'
+    mappings channel: "official", version: "${minecraft_version}"
 
     runs {
         client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'co_construction'
+            workingDirectory project.file("run")
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            property "forge.enabledGameTestNamespaces", "co_construction"
             mods {
                 co_construction {
                     source sourceSets.main
@@ -40,10 +40,10 @@ minecraft {
         }
 
         server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'co_construction'
+            workingDirectory project.file("run")
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            property "forge.enabledGameTestNamespaces", "co_construction"
             mods {
                 co_construction {
                     source sourceSets.main
@@ -52,10 +52,10 @@ minecraft {
         }
 
         gameTestServer {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'co_construction'
+            workingDirectory project.file("run")
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            property "forge.enabledGameTestNamespaces", "co_construction"
             mods {
                 co_construction {
                     source sourceSets.main
@@ -64,11 +64,11 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory project.file("run")
 
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'co_construction', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            args "--mod", "co_construction", "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources/")
             mods {
                 co_construction {
                     source sourceSets.main
@@ -84,14 +84,14 @@ mixin {
 }
 
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.resources { srcDir "src/generated/resources" }
 
 repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.2-43.2.3'
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    minecraft "net.minecraftforge:forge:${forge_version}"
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}"
 }
 
 jar {
@@ -108,8 +108,8 @@ jar {
     }
 }
 
-jar.finalizedBy('reobfJar')
+jar.finalizedBy("reobfJar")
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }
